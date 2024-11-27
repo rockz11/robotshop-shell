@@ -1,7 +1,3 @@
-cp mongodb.repo /etc/yum.repos.d/mongodb.repo
-
-cp catalogue.service /etc/systemd/system/catalogue.service
-
 dnf module disable nodejs -y
 
 dnf module enable nodejs:20 -y
@@ -18,9 +14,10 @@ unzip /tmp/catalogue.zip
 cd /app
 
 npm install
+cp catalogue.service /etc/systemd/system/catalogue.service
 
 dnf install mongodb-mongosh -y
-
+cp mongodb.repo /etc/yum.repos.d/mongodb.repo
 mongosh --host mongodb.devops11.online </app/db/master-data.js
 
 systemctl daemon-reload
