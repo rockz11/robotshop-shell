@@ -1,9 +1,9 @@
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp mongodb.repo /etc/yum.repos.d/mongodb.repo
 
-dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
-dnf install nodejs -y
+sudo dnf module disable nodejs -y
+sudo dnf module enable nodejs:20 -y
+sudo dnf install nodejs -y
 
 useradd roboshop
 
@@ -13,11 +13,11 @@ cd /app
 unzip /tmp/catalogue.zip
 
 cd /app
-npm install
+sudo npm install
 
-dnf install mongodb-mongosh -y
+sudo dnf install mongodb-mongosh -y
 mongosh --host mongodb.devops11.online </app/db/master-data.js
 
-systemctl daemon-reload
-systemctl enable catalogue
-systemctl restart catalogue
+sudo systemctl daemon-reload
+sudo systemctl enable catalogue
+sudo systemctl restart catalogue
